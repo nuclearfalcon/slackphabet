@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import NavBar from './navigation/NavBar'
 
 export const siteTitle = 'Quantized Meridiem'
 
