@@ -10,7 +10,7 @@ function Layout({children}) {
             <title>{siteTitle}</title>
         </Head>
         
-        <main>
+        <main className="container">
             {children}
         </main>
     </div>
