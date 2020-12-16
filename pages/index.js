@@ -1,8 +1,12 @@
 import Layout from '../components/layout'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+
+import ClipboardJS from 'clipboard'
 
 export default function Home() {
+
+  new ClipboardJS('.btn')
 
   const [slackString, setSlackString] = useState()
 
@@ -10,7 +14,6 @@ export default function Home() {
 
     const normalLetters = "abcdefghijklmnopqrstuvwxyz"
 
-    console.log(e.target.value)
     let originalString = e.target.value
     let newString = ""
     for (let index = 0; index < originalString.length; index++) {
@@ -31,7 +34,6 @@ export default function Home() {
       }
     }
 
-    console.log(newString)
     setSlackString(newString)
   }
 
@@ -45,7 +47,8 @@ export default function Home() {
         </div>
         <div className="flex-1">
           Slack Text<br />
-          <textarea rows="10" cols="30" type="text" value={slackString}></textarea>
+          <textarea rows="10" cols="30" type="text" id="slacktext" value={slackString}></textarea><br />
+          <button className='bg-transparent hover:bg-blue text-blue-dark font-semibold py-2 px-4 border border-blue hover:border-black rounded' class="btn" data-clipboard-target="#slacktext">Copy that text!</button>
         </div>
 
       </div>
