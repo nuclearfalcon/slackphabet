@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export const siteTitle = 'Quantized Meridiem'
+export const siteTitle = 'Slack Emoji Alphabetizer'
 
 function Layout({children}) {
 

@@ -1,36 +1,51 @@
 import Layout from '../components/layout'
 
-import Datetime from 'react-datetime'
-
 import { useState, useEffect } from 'react'
 
 export default function Home() {
 
-  let [date, setDate] = useState("date")
+  const [slackString, setSlackString] = useState()
 
-  useEffect(() => {
-    console.log(quantizeDate(date))
-    }, [date])
+  function EmojiBoxUpdater (e) {
 
+    const normalLetters = "abcdefghijklmnopqrstuvwxyz"
 
-    //QUANTIZE THAT SHIT HERE
-  function quantizeDate(normalDate) {
+    console.log(e.target.value)
+    let originalString = e.target.value
+    let newString = ""
+    for (let index = 0; index < originalString.length; index++) {
+      const letter = originalString.charAt(index).toLowerCase()
 
-    let quantizedDate = normalDate.toString() + " quantized"
+      if (normalLetters.indexOf(letter) > -1) {
+        newString = newString+":alphabet-white-"+letter+":"
+      } else if (letter == "#") {
+        newString = newString+":alphabet-white-hash:"
+      } else if (letter == "!") {
+        newString = newString+":alphabet-white-exclamation:"
+      } else if (letter == "@") {
+        newString = newString+":alphabet-white-at:"
+      } else if (letter == "?") {
+        newString = newString+":alphabet-white-question:"
+      } else {
+        newString = newString+letter
+      }
+    }
 
-    return quantizedDate
+    console.log(newString)
+    setSlackString(newString)
   }
 
   return (
     <Layout>
 
       <div className="flex bg-blue-100 m-24 p-8 sm:m-4">
-        <div className="flex-1">Select a date: 
-          <Datetime onChange={pickedDate => setDate(quantizeDate(pickedDate.toDate()))} />
+        <div className="flex-1"> 
+          Your Text<br />
+          <textarea rows="10" cols="30" onChange={EmojiBoxUpdater}></textarea>
         </div>
         <div className="flex-1">
-          Q u a n t i z e d  M e r i d i e m :<br/>
-          {date.toString()}
+          Slack Text<br />
+          <textarea rows="10" cols="30" type="text" value={slackString}></textarea>
         </div>
 
       </div>
