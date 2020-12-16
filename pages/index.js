@@ -1,12 +1,17 @@
 import Layout from '../components/layout'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import ClipboardJS from 'clipboard'
+import clipboard from 'clipboard'
 
 export default function Home() {
 
-  new ClipboardJS('.btn')
+
+  useEffect(() => {
+    new clipboard('.btn')
+    console.log("Clipboard created")
+  }, [])
+  
 
   const [slackString, setSlackString] = useState()
 
@@ -48,7 +53,7 @@ export default function Home() {
         <div className="flex-1">
           Slack Text<br />
           <textarea rows="10" cols="30" type="text" id="slacktext" value={slackString}></textarea><br />
-          <button className='bg-transparent hover:bg-blue text-blue-dark font-semibold py-2 px-4 border border-blue hover:border-black rounded' class="btn" data-clipboard-target="#slacktext">Copy that text!</button>
+          <button className='bg-transparent hover:bg-blue text-blue-dark font-semibold py-2 px-4 border border-blue hover:border-black rounded btn' class="btn" data-clipboard-text={slackString}>Copy that text!</button>
         </div>
 
       </div>
