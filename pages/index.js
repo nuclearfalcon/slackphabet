@@ -34,6 +34,8 @@ export default function Home() {
         newString = newString+":alphabet-white-at:"
       } else if (letter == "?") {
         newString = newString+":alphabet-white-question:"
+      } else if (letter == " ") {
+        newString = newString+"    "
       } else {
         newString = newString+letter
       }
